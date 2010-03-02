@@ -1,0 +1,5 @@
+- unless @list.nil?
+  %ul
+  - @list.sort.each do |l|
+    %li 
+      = l[1]

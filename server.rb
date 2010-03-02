@@ -1,9 +1,14 @@
 #!/usr/bin/ruby
 
-require "rubygems"
-require "sinatra"
-require "ohm"
-require "haml"
+require 'rubygems'
+
+Dir[File.dirname(__FILE__) + '/vendor/*/lib'].each { |d| $:.unshift d }
+$:.unshift File.dirname(__FILE__) + '/lib'
+
+require 'sinatra'
+require 'ohm'
+require 'haml'
+require 'partials'
 
 set :haml, {:format => :html5 }
 #set :environment, :production
@@ -23,11 +28,15 @@ class Chat < Ohm::Model
 end
 
 get '/' do
+  haml :index
+end
+
+get '/chat' do 
   @list = []
   Chat.all.each do |c|
     @list << [c.id.to_i, c.message]
   end
-  haml :index
+  haml :chat
 end
 
 post "/" do
