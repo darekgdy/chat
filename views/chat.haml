@@ -1,5 +1,7 @@
 - unless @list.nil?
-  %ul
   - @list.sort.each do |l|
-    %li 
-      = l[1]
+    %p{ :class => 'message' }= l[1]
+
+:javascript
+  $("#chat").attr({ scrollTop: $("#chat").attr("scrollHeight") });
+

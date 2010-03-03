@@ -16,11 +16,17 @@
 
       $(document).ready(getRandom);
 
+   
   %body
-    %h2 Chat v.01
-    #chat
-      - haml(:chat, :layout => false)
-    %form{ :action => "/", :method => "post"}
-      %input{:name => "message", :id => "message"}
-      %input{:type => "submit", :value => "Send", :class => "button"}
+    %h2 Chat v.02
+    #window
+      #chat
+        - haml(:chat, :layout => false)
+
+      %form{ :action => "/", :method => "post", :id => "form" }
+        %input{:name => "message", :id => "message"}
+
+
+:javascript
+  $("input").focus(); 
 
