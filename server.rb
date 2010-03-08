@@ -2,19 +2,16 @@
 
 require 'rubygems'
 
-Dir[File.dirname(__FILE__) + '/vendor/*/lib'].each { |d| $:.unshift d }
-$:.unshift File.dirname(__FILE__) + '/lib'
-
 require 'sinatra'
 require 'ohm'
 require 'haml'
-require 'partials'
 
 set :haml, {:format => :html5 }
 #set :environment, :production
-set :sessions, true
 
-Ohm.connect
+enable :sessions
+
+server ||= Ohm.connect
 
 class Chat < Ohm::Model
   attribute :message
@@ -28,7 +25,15 @@ class Chat < Ohm::Model
 end
 
 get '/' do
-  haml :index
+  if session[:nick]
+    haml :index
+  else
+    redirect '/nick'
+  end
+end
+
+get '/nick' do
+  haml :nick
 end
 
 get '/chat' do 
@@ -40,6 +45,12 @@ get '/chat' do
 end
 
 post "/" do
-  chat = Chat.create :message => params[:message]
+  message = "(#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}) <b>#{session[:nick]}</b>: #{params[:message]}"
+  chat = Chat.create :message => message
   redirect '/'
+end
+
+post "/nick" do
+  session[:nick] = params[:nick]
+  redirect "/"
 end

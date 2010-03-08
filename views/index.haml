@@ -16,17 +16,22 @@
 
       $(document).ready(getRandom);
 
-   
   %body
-    %h2 Chat v.02
+    %h2 Chat v.03
     #window
       #chat
         - haml(:chat, :layout => false)
 
-      %form{ :action => "/", :method => "post", :id => "form" }
+      //%form{ :action => "/", :method => "post", :id => "form" }
+      #form
         %input{:name => "message", :id => "message"}
-
 
 :javascript
   $("input").focus(); 
-
+  
+  $('#message').bind('keypress', function(e) {
+    if(e.keyCode==13){
+      $.post("/", { message: $('#message').val() } );
+      $('#message').val("");
+    }
+  });
