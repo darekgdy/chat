@@ -1,0 +1,8 @@
+%body
+  %form{ :action => "/nick", :method => "post", :id => "nick" }
+    Podaj nick:
+    %input{:name => "nick"}
+
+:javascript
+  $("input").focus(); 
+
