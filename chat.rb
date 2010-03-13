@@ -33,7 +33,7 @@ class Message < Model
     message = Message.new(message_id)
     message.content = content
     message.user = user
-    message.created_at = Time.now.to_s
+    #message.created_at = Time.now.to_s
     redis.push_head("messages", message_id)
   end
  
@@ -45,11 +45,11 @@ class Message < Model
 
   property :content
   property :user
-  property :created_at
-  
-  def created_at
-    Time.parse(_created_at)
-  end
+  #property :created_at
+
+  #def created_at
+  #  Time.parse(_created_at)
+  #end
 end
 
 

@@ -1,6 +1,6 @@
 <% unless @messages.nil? %>
   <% @messages.each do |message| %>
-    <li><small>(<%= time_ago_in_words(message.created_at)%>)</small> <b><%= message.user %>:</b> <%= message.content %></li>
+    <li><b><%= message.user %>:</b> <%= message.content %></li>
   <% end %>
 <% end %>
 <script>

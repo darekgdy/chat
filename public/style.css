@@ -8,7 +8,7 @@ body {
   color: red;
 }
 
-ul {
+ul, li {
   list-style: none;
 }
 
