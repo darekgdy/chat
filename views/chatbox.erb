@@ -1,0 +1,8 @@
+<% unless @messages.nil? %>
+  <% @messages.each do |message| %>
+    <li><small>(<%= time_ago_in_words(message.created_at)%>)</small> <b><%= message.user %>:</b> <%= message.content %></li>
+  <% end %>
+<% end %>
+<script>
+  $(".chatbox_content").attr({ scrollTop: $(".chatbox_content").attr("scrollHeight") });
+</script>

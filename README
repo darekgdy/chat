@@ -3,4 +3,6 @@ Prosty chat sponsorowany przez:
 - jQuery, 
 - Ruby,
 - Sinatra,
-- Redis
+- Redis (RubyRedis)
+
+W wyglądzie i działaniu ma przypominać chat z gmail i facebook
