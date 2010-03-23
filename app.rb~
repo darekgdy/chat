@@ -24,16 +24,8 @@ get '/chatbox' do
   @messages = Message.all
   @messages.each do |m|
     m.split(' ')each do |w| 
-	  if    w.match(':(')   w="<img src='/icons/sad.png' />"
-	  elsif w.match(':)')   w="<img src='/icons/smile.png' />"
-	  elsif w.match(']:->') w="<img src='/icons/devil.png' />"
-	  elsif w.match(':*')   w="<img src='/icons/kiss.png' />"
-	  elsif w.match(':|')   w="<img src='/icons/neutral.png' />"
-	  elsif w.match(':>')   w="<img src='/icons/smile-big.png' />"
-	  elsif w.match(':p')   w="<img src='/icons/smile-big.png' />"
-	  elsif w.match(':P')   w="<img src='/icons/smile-big.png' />"
-	  elsif w.match(':d')   w="<img src='/icons/frin.png' />"
-	  elsif w.match(':D')   w="<img src='/icons/grin.png' />"
+	  if w.match(':)')
+        w="<img src='/icons/smile.png' />"
 	  end
     end
   end
